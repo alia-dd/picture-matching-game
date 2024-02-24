@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxfinalproj.MemoryGameController">
+    <children>
+      <AnchorPane fx:id="Gpane" layoutX="113.0" layoutY="106.0" prefHeight="420.0" prefWidth="559.0" style="-fx-border-color: #52dcff; -fx-background-color: #333435;">
+         <children>
+            <GridPane fx:id="gameMatrix" hgap="10" layoutX="78.0" layoutY="24.0" prefHeight="337.0" prefWidth="424.0" vgap="10">
+
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnSetting" layoutX="564.0" layoutY="49.0" mnemonicParsing="false" onAction="#btnpause" prefHeight="37.0" prefWidth="108.0" textAlignment="CENTER" />
+      <Button fx:id="btnload" layoutX="114.0" layoutY="49.0" mnemonicParsing="false" onAction="#btnRelode" prefHeight="37.0" prefWidth="98.0" textAlignment="CENTER" />
+      <Label fx:id="txlable" alignment="CENTER_RIGHT" layoutX="241.0" layoutY="49.0" prefHeight="37.0" prefWidth="158.0" textAlignment="CENTER" />
+    </children>
+</AnchorPane>

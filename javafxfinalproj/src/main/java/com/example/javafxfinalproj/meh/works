@@ -1,0 +1,53 @@
+package com.example.javafxfinalproj;
+
+import java.util.Random;
+
+public class GameBoard {
+    int rowNum = 6;
+    int colNum = 6;
+    public Cards[][] Cells = new Cards[rowNum][colNum];
+
+    public void populateBoard(){
+        Cells = new Cards[rowNum][colNum];
+        String[] images = {"apple", "circle", "heart", "diamond", "clover"};
+        Random randomImage = new Random();
+
+        while(!isBoardFull()){
+            int randomImageIndex = randomImage.nextInt(images.length);
+            String randomImageSelected = images[randomImageIndex];
+
+            int randomRow1;
+            int randomCol1;
+            int randomRow2;
+            int randomCol2;
+
+            //labo labo oo sawor
+            do {
+                randomRow1 = randomImage.nextInt(rowNum);
+                randomCol1 = randomImage.nextInt(colNum);
+            }while(Cells[randomRow1][randomCol1]!=null);
+
+            do {
+                randomRow2 = randomImage.nextInt(rowNum);
+                randomCol2 = randomImage.nextInt(colNum);
+            }while((randomRow1 ==randomRow2 && randomCol1 == randomCol2) || Cells[randomRow2][randomCol2]!=null);
+
+
+            Cells[randomRow1][randomCol1] = new Cards(randomImageSelected,randomRow1, randomCol1);
+            Cells[randomRow2][randomCol2] = new Cards(randomImageSelected,randomRow2, randomCol2);
+
+        }
+
+    }
+
+    private boolean isBoardFull() {
+        for(int i=0;i<rowNum;i++){
+            for(int j=0;j<colNum;j++){
+                if(Cells[i][j]==null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}

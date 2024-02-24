@@ -1,0 +1,100 @@
+package com.example.javafxfinalproj;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
+public class GameBoard {
+    int rowNum = 6;
+    int colNum = 6;
+    public Cards[][] Cells = new Cards[rowNum][colNum];
+//    private final ArrayList<String> memoryOp = new ArrayList<>(Arrays.asList("apple", "circle", "heart", "diamond", "clover", "diamond","apple", "circle", "heart", "diamond", "clover", "diamond"));
+    String[] memoryOp = {"apple", "circle", "heart", "diamond", "clover", "diamond","apple", "circle", "heart", "diamond", "clover", "diamond"};
+    public void populateBoard(){
+        Cells = new Cards[rowNum][colNum];
+//        String[] images = {"apple", "circle", "heart", "diamond", "clover"};
+        Random randomImage = new Random();
+
+//        while(!isBoardFull()){
+        //si random eh oo u fiirinaa sawirda listka kujira
+//            int randomImageIndex = randomImage.nextInt(images.length);
+//            String randomImageSelected = images[randomImageIndex];
+
+        int randomRow1;
+        int randomCol1;
+        int randomRow2;
+        int randomCol2;
+        for (int i = 0; i < rowNum - 1; i++) {
+//            String memoryOption = memoryOp.get(i);
+            int randomImageIndex = randomImage.nextInt(memoryOp.length);
+            String randomImageSelected = memoryOp[randomImageIndex];
+            //labo labo oo sawir ugalina
+            do {
+                randomRow1 = randomImage.nextInt(rowNum);
+                randomCol1 = randomImage.nextInt(colNum);
+            } while (Cells[randomRow1][randomCol1] != null);
+
+            do {
+                randomRow2 = randomImage.nextInt(rowNum);
+                randomCol2 = randomImage.nextInt(colNum);
+            } while ((randomRow1 == randomRow2 && randomCol1 == randomCol2) || Cells[randomRow2][randomCol2] != null);
+
+
+            Cells[randomRow1][randomCol1] = new Cards(randomImageSelected, randomRow1, randomCol1);
+            Cells[randomRow2][randomCol2] = new Cards(randomImageSelected, randomRow2, randomCol2);
+
+        }
+
+//        }
+
+    }
+
+
+    private boolean isBoardFull() {
+        for(int i=0;i<rowNum;i++){
+            for(int j=0;j<colNum;j++){
+                if(Cells[i][j]==null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
+
+
+
+ @FXML
+    void CheckIfMarch(int selectedRow, int selectedCol) throws FileNotFoundException {
+        if(!firstCardClicked){
+            //If next turn is started before old buttons are hidden
+            if(!match){
+                hideButtons();
+                timeline.stop();
+            }
+            match = false;
+            firstCardClicked = true;
+
+            firstCard = board.Cells[selectedRow][selectedCol];
+
+            return;
+        }
+
+        secondCard = board.Cells[selectedRow][selectedCol];
+
+        firstCardClicked = false;
+
+        if(firstCard.value.equals(secondCard.value)){
+            //matching pair
+            System.out.println("Match");
+            board.Cells[firstCard.row][firstCard.col].wasGuessed = true;
+            board.Cells[secondCard.row][secondCard.col].wasGuessed = true;
+            match = true;
+            return;
+        }
+
+        timeline.play();
+        firstCard= board.Cells[selectedRow][selectedCol];
+        secondCard = null;
+    }

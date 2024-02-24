@@ -1,0 +1,21 @@
+.root{
+     -fx-background-color:#1a1a1a;
+}
+.button{
+    -fx-background-color:#1a1a1a;
+     -fx-text-fill: #52dcff;
+     -fx-font-size: 15pt;
+     -fx-font-weight: bold;
+     -fx-border-color: #52dcff;
+}
+
+ggpane{
+    -fx-border-color: #1b444f;
+}
+.label{
+    -fx-background-color:#1a1a1a;
+    -fx-text-fill: #52dcff;
+    -fx-border-color: #52dcff;
+    -fx-font-size: 15pt;
+    -fx-font-weight: bold;
+}
